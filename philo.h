@@ -6,16 +6,16 @@
 /*   By: afaucher <afaucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/07 17:55:16 by afaucher          #+#    #+#             */
-/*   Updated: 2014/05/08 17:44:44 by afaucher         ###   ########.fr       */
+/*   Updated: 2014/05/08 19:23:34 by afaucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILO_H
 # define PHILO_H
-# define MAX_LIFE 15
-# define EAT_T 2
-# define REST_T 2
-# define THINK_T 2
+# define MAX_LIFE 8
+# define EAT_T 3
+# define REST_T 5
+# define THINK_T 1
 # define TIMEOUT 30
 # include <pthread.h>
 

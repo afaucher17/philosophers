@@ -6,7 +6,7 @@
 /*   By: afaucher <afaucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/07 16:01:46 by afaucher          #+#    #+#             */
-/*   Updated: 2014/05/08 17:47:39 by afaucher         ###   ########.fr       */
+/*   Updated: 2014/05/08 19:28:05 by afaucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,105 +17,38 @@
 
 int g_stop = 0;
 
-void				*ft_philolunch(void *philo_ptr)
+static void			ft_decrement_life(t_philo **philotab)
 {
-	t_philo			*philo;
-	int				left;
-	int				right;
+	int				i;
 
-	left = 0;
-	right = 0;
-	philo = (t_philo *)philo_ptr;
-	printf("Hi my name is %s\n", philo->name);
-	while (!g_stop)
+	i = -1;
+	while (++i < 7 && !g_stop)
 	{
-		if (philo->state == DEFAULT)
+		if (philotab[i]->state != EAT)
 		{
-			if (!pthread_mutex_trylock(&philo->left->mutex_stick))
+			philotab[i]->pv--;
+			if (philotab[i]->pv <= 0)
 			{
-				printf("%s stole the stick at his left !\n", philo->name);
-				left = 1;
+				printf("%s died from starvation.\n", philotab[i]->name);
+				g_stop = 1;
 			}
-			else
-				left = 0;
-			if (!pthread_mutex_trylock(&philo->right->mutex_stick))
-			{
-				printf("%s stole the stick at his right !\n", philo->name);
-				right = 1;
-			}
-			else
-				right = 0;
-			if (left + right == 2)
-				philo->state = EAT;
-			else if (left + right == 1)
-				philo->state = THINK;
-			else
-				philo->state = DEFAULT;
 		}
-		if (philo->state == THINK)
-		{
-			if (left)
-			{
-				pthread_mutex_unlock(&philo->left->mutex_stick);
-				left = 0;
-			}
-			if (right)
-			{
-				pthread_mutex_unlock(&philo->right->mutex_stick);
-				right = 0;
-			}
-			printf("%s is thinking\n", philo->name);
-			usleep(1000000 * THINK_T);
-			philo->state = DEFAULT;
-		}
-		if (philo->state == EAT)
-		{
-			printf("%s is eating\n", philo->name);
-			philo->pv = MAX_LIFE;
-			usleep(1000000 * EAT_T);
-			pthread_mutex_unlock(&philo->left->mutex_stick);
-			pthread_mutex_unlock(&philo->right->mutex_stick);
-			left = 0;
-			right = 0;
-			philo->state = REST;
-		}
-		if (philo->state == REST)
-		{
-			printf("%s takes a break\n", philo->name);
-			usleep(1000000 * REST_T);
-			philo->state = DEFAULT;
-		}
+		printf("%s is at %d pv\n", philotab[i]->name, philotab[i]->pv);
 	}
-	return (NULL);
 }
 
 static void			*ft_life(void *philotab_ptr)
 {
-	int				i;
 	int				secondsleft;
 	t_philo			**philotab;
 
 	philotab = (t_philo **)philotab_ptr;
 	secondsleft = TIMEOUT;
-	while (!g_stop && secondsleft > 0)
+	while (!g_stop && secondsleft-- > 0)
 	{
 		usleep(1000000);
 		printf("-------------------------------------------\n");
-		i = -1;
-		while (++i < 7 && !g_stop)
-		{
-			if (philotab[i]->state != EAT)
-			{
-				philotab[i]->pv--;
-				if (philotab[i]->pv <= 0)
-				{
-					printf("%s died from starvation.\n", philotab[i]->name);
-					g_stop = 1;
-				}
-			}
-			printf("%s is at %d pv\n", philotab[i]->name, philotab[i]->pv);
-		}
-		secondsleft--;
+		ft_decrement_life(philotab);
 	}
 	if (secondsleft <= 0 && !g_stop)
 	{
@@ -142,7 +75,7 @@ int					main(void)
 	t_philo			*philotab[7];
 	static char		*names[7] = {"Stilpon", "Chilon", "Thales", "Pythagore",
 
-		"Empedocle", "Pherecyde", "Anacharsis"};
+	"Empedocle", "Pherecyde", "Anacharsis"};
 	i = -1;
 	while (++i < 7)
 		sticktab[i] = ft_create_stick();
