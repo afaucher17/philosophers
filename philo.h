@@ -6,21 +6,22 @@
 /*   By: afaucher <afaucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/07 17:55:16 by afaucher          #+#    #+#             */
-/*   Updated: 2014/05/07 23:24:36 by afaucher         ###   ########.fr       */
+/*   Updated: 2014/05/08 17:44:44 by afaucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILO_H
 # define PHILO_H
-# define MAX_LIFE 50
-# define EAT_T 10
-# define REST_T 10
-# define THINK_T 10
-# define TIMEOUT 5
+# define MAX_LIFE 15
+# define EAT_T 2
+# define REST_T 2
+# define THINK_T 2
+# define TIMEOUT 30
 # include <pthread.h>
 
 enum				e_state
 {
+	DEFAULT = 0,
 	EAT,
 	REST,
 	THINK
@@ -38,7 +39,6 @@ typedef struct		s_philo
 	char			*name;
 	pthread_t		thread;
 	enum e_state	state;
-	int				stop;
 	int				pv;
 	struct s_stick	*right;
 	struct s_stick	*left;

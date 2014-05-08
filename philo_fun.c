@@ -6,7 +6,7 @@
 /*   By: afaucher <afaucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/07 18:04:18 by afaucher          #+#    #+#             */
-/*   Updated: 2014/05/07 19:27:27 by afaucher         ###   ########.fr       */
+/*   Updated: 2014/05/08 16:53:18 by afaucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,7 @@ t_philo		*ft_create_philo(int id, char *name, t_stick *left, t_stick *right)
 		exit(EXIT_FAILURE);
 	new->id = id;
 	new->name = name;
-	new->state = REST;
-	new->stop = 0;
+	new->state = DEFAULT;
 	new->pv = MAX_LIFE;
 	new->right = right;
 	new->left = left;
