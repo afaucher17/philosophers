@@ -6,7 +6,7 @@
 /*   By: afaucher <afaucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/07 16:01:46 by afaucher          #+#    #+#             */
-/*   Updated: 2014/05/08 19:28:05 by afaucher         ###   ########.fr       */
+/*   Updated: 2014/05/09 14:01:35 by afaucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>
+#include <ncurses.h>
 
 int g_stop = 0;
 
@@ -84,6 +85,6 @@ int					main(void)
 		philotab[i] = ft_create_philo(i + 1, names[i],
 				sticktab[i], sticktab[(i + 1) % 7]);
 	ft_watcher_threads(philotab);
-	(void)philotab;
+	ft_ncurses(philotab);
 	return (0);
 }

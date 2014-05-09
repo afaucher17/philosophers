@@ -6,7 +6,7 @@
 /*   By: afaucher <afaucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/07 17:55:16 by afaucher          #+#    #+#             */
-/*   Updated: 2014/05/08 19:23:34 by afaucher         ###   ########.fr       */
+/*   Updated: 2014/05/09 14:03:04 by afaucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,5 @@ t_philo				*ft_create_philo(int id, char *name, t_stick *left,
 					t_stick *right);
 t_stick				*ft_create_stick(void);
 void				*ft_philolunch(void *philo);
+int					ft_ncurses(t_philo **philotab);
 #endif

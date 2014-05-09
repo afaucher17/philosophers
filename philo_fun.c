@@ -6,7 +6,7 @@
 /*   By: afaucher <afaucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/07 18:04:18 by afaucher          #+#    #+#             */
-/*   Updated: 2014/05/08 16:53:18 by afaucher         ###   ########.fr       */
+/*   Updated: 2014/05/09 14:02:29 by afaucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ t_philo		*ft_create_philo(int id, char *name, t_stick *left, t_stick *right)
 	new->left = left;
 	if (pthread_create(&new->thread, NULL, ft_philolunch, new))
 		exit(EXIT_FAILURE);
+	pthread_detach(new->thread, NULL);
 	return (new);
 }
 
