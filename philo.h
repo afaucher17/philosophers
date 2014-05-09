@@ -6,17 +6,17 @@
 /*   By: afaucher <afaucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/07 17:55:16 by afaucher          #+#    #+#             */
-/*   Updated: 2014/05/09 14:03:04 by afaucher         ###   ########.fr       */
+/*   Updated: 2014/05/09 16:34:56 by afaucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILO_H
 # define PHILO_H
-# define MAX_LIFE 8
+# define MAX_LIFE 2
 # define EAT_T 3
 # define REST_T 5
 # define THINK_T 1
-# define TIMEOUT 30
+# define TIMEOUT 10
 # include <pthread.h>
 
 enum				e_state
@@ -49,4 +49,5 @@ t_philo				*ft_create_philo(int id, char *name, t_stick *left,
 t_stick				*ft_create_stick(void);
 void				*ft_philolunch(void *philo);
 int					ft_ncurses(t_philo **philotab);
+char				*ft_itoa(int nb);
 #endif
