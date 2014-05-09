@@ -6,7 +6,7 @@
 /*   By: afaucher <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/09 18:24:03 by afaucher          #+#    #+#             */
-/*   Updated: 2014/02/09 18:29:00 by afaucher         ###   ########.fr       */
+/*   Updated: 2014/05/09 17:59:43 by tdieumeg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ void			ft_dlstpushfront(t_dlist **list,
 		*list = new;
 	else
 	{
-
 		new->next = cur;
 		cur->prev = new;
 		*list = new;

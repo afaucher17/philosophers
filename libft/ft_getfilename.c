@@ -6,7 +6,7 @@
 /*   By: afaucher <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/28 14:16:46 by afaucher          #+#    #+#             */
-/*   Updated: 2013/12/18 18:55:55 by afaucher         ###   ########.fr       */
+/*   Updated: 2014/05/09 18:00:16 by tdieumeg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ char	*ft_getfilename(char *fullpath)
 		i++;
 	}
 	if (start == i)
-		return (ft_strsub(fullpath, old_start
-							, ft_strlen(fullpath) - old_start));
+		return (ft_strsub(fullpath, old_start,
+		ft_strlen(fullpath) - old_start));
 	return (ft_strsub(fullpath, start, ft_strlen(fullpath) - start));
 }
